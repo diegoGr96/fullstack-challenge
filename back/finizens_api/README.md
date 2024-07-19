@@ -4,7 +4,7 @@ This challenge has been made with a local server like Xampp, Wampp, etc.
 In order to setup the project you should follow the next steps:
 
 - Copy .env.example file and rename it to .env. This file already has sample Database credentials.
-- Run `composer update`.
+- Run `composer install --prefer-dist` (use `--prefer-dist` to create a non-"version control repository").
 - Run `composer dump-autoload` (ensure custom Src namespace is loaded).
 - Run `php artisan key:generate`
 - Create your local Database (you can use the sample credentials already written in the .env file or change them).
