@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Order\CreateOrderController;
+use App\Http\Controllers\Api\Order\GetNextOrderIdController;
 use App\Http\Controllers\Api\Order\UpdateOrderStatusController;
 use App\Http\Controllers\Api\Portfolio\FindPortfolioController;
 use App\Http\Controllers\Api\Portfolio\GetAllPortfolioController;
@@ -16,4 +17,5 @@ Route::prefix('portfolios')->group(function () {
 Route::prefix('orders')->group(function () {
     Route::post('/', CreateOrderController::class);
     Route::patch('{id}', UpdateOrderStatusController::class);
+    Route::get('next-id', GetNextOrderIdController::class);
 });

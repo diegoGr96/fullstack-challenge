@@ -18,8 +18,4 @@ export class HomeComponent {
   get portfolios(): Portfolio[] {
     return this.portfolioService.portfolioList;
   }
-
-  // callApi() {
-  //   this.testService.callApi();
-  // }
 }

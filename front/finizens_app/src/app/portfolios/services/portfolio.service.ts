@@ -6,9 +6,16 @@ import {
   Portfolio,
 } from '../interfaces/portfolio.interfaces';
 import { environment } from '../../../environment';
-import { BehaviorSubject, catchError, map, Observable, of, Subject } from 'rxjs';
+import {
+  catchError,
+  map,
+  Observable,
+  of,
+  Subject,
+} from 'rxjs';
 import { OrderRequest } from '../interfaces/order-request.interface';
 import { Order } from '../interfaces/order.interface';
+import { GetNextOrderIdResponse } from '../interfaces/get-next-order-id-response.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -18,11 +25,9 @@ export class PortfolioService {
 
   public portfolioList: Portfolio[] = [];
 
-  private portfolioSubject = new Subject<Portfolio | null>();
-  portfolio$ = this.portfolioSubject.asObservable();
+  portfolio$ = new Subject<Portfolio | null>();
 
   constructor(private http: HttpClient) {
-    // this.loadPortfolios();
   }
 
   loadPortfolios() {
@@ -38,26 +43,30 @@ export class PortfolioService {
       .get<FindPortfolioResponse>(`${this.API_URL}/portfolios/${portfolioId}`)
       .pipe(
         map((findPortfolioResponse) => {
-          this.portfolioSubject.next(findPortfolioResponse.data);
+          this.portfolio$.next(findPortfolioResponse.data);
           return findPortfolioResponse.data;
         }),
         catchError((error) => {
           console.error(error);
-          this.portfolioSubject.next(null);
+          this.portfolio$.next(null);
           return of(null);
         })
       );
   }
 
-  createOrder(order: OrderRequest) {
-    this.http.post(`${this.API_URL}/orders`, order).subscribe((response) => {
-      this.findPortfolio(order.portfolio).subscribe();
-    });
+  getNextOrderId(): Observable<GetNextOrderIdResponse> {
+    return this.http.get<GetNextOrderIdResponse>(
+      `${this.API_URL}/orders/next-id`
+    );
   }
 
-  completeOrder(order: Order) {
-    this.http.patch(`${this.API_URL}/orders/${order.id}`, {'status': 'completed'}).subscribe((response) => {
-      this.findPortfolio(order.portfolio_id).subscribe();
+  createOrder(order: OrderRequest): Observable<void> {
+    return this.http.post<void>(`${this.API_URL}/orders`, order);
+  }
+
+  completeOrder(order: Order): Observable<void> {
+    return this.http.patch<void>(`${this.API_URL}/orders/${order.id}`, {
+      status: 'completed',
     });
   }
 }

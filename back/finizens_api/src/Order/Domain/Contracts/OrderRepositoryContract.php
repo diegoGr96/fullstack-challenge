@@ -17,4 +17,5 @@ interface OrderRepositoryContract
     public function find(OrderId $orderId): Result;
     public function createOrder(Order $order): void;
     public function updateOrderStatus(Order $order, OrderStatus $orderStatus): void;
+    public function getNextOrderId(): OrderId;
 }

@@ -73,4 +73,11 @@ final class EloquentOrderRepository implements OrderRepositoryContract
             ->where('id', $order->orderId->value)
             ->update(['status' => $orderStatus->id]);
     }
+
+    public function getNextOrderId(): OrderId
+    {
+        $lastEloquentOrder = EloquentOrder::query()->latest('id')->first();
+        $lastId = $lastEloquentOrder->id ?? 0;
+        return OrderId::create($lastId + 1)->getData();
+    }
 }
