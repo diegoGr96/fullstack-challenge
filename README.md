@@ -1,4 +1,7 @@
-# Finizens' FullStack Challenge
+# Finizens' FullStack Challenge - Diego García Ruano
+
+## Notes about the projects
+I have created a README file for both the Angular app and the Laravel API. Please read them before reviewing the code, as they explain important details about how the projects work and reflect the ideas I followed during the development of this test.
 
 ## Instructions
 

@@ -1,0 +1,25 @@
+<div *ngFor="let portfolio of portfolios" class="row justify-content-center">
+
+    <div class="col-md-8 col-sm-10 card mb-2 text-center animate__animated animate__fadeInLeft animate__delay-2s">
+        <div class="row fw-bold">
+            <div class="col-md-2 align-content-center border-end p-3">
+                Id: {{ portfolio.id }}
+            </div>
+
+            <div class="col-md-4 align-content-center border-end p-3">
+                Allocations: {{ portfolio.allocations.length }}
+            </div>
+
+            <div class="col-md-4 align-content-center border-end p-3">
+                Orders:{{ portfolio.orders.length }}
+            </div>
+
+            <div class="col-md-2 align-content-center p-3">
+                <a class="btn btn-primary" [routerLink]="['/portfolio/', portfolio.id]">
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,86 @@
+<div class="row mb-5">
+    <div class="col-md-12">
+        <a class="btn btn-primary" [routerLink]="['/home']">
+            <i class="bi bi-arrow-left"></i>
+            Back home
+        </a>
+    </div>
+    <div class="col-md-12 mt-5">
+        <h4>
+            <b>Portfolio ID: </b>
+            {{ this.portfolio?.id }}
+        </h4>
+        <div class="d-flex">
+            <div class="mx-5">Allocations: <span class="fw-bold">{{ portfolio?.allocations?.length }}</span></div>
+            <div>Orders: <span class="fw-bold">{{ portfolio?.orders?.length }}</span></div>
+        </div>
+
+        <div class="text-center mt-5" *ngIf="portfolio?.orders?.length">
+            <h5>Orders</h5>
+            <div *ngFor="let order of portfolio?.orders" class="row justify-content-center">
+
+                <div class="col-md-8 col-sm-10 card mb-2 text-center">
+                    <div class="row fw-bold">
+                        <div class="col-md-2 align-content-center border-end border-bottom p-3">
+                            Id: {{ order.id }}
+                        </div>
+
+                        <div class="col-md-2 align-content-center border-end border-bottom p-3">
+                            Portfolio: {{ order.portfolio_id }}
+                        </div>
+
+                        <div class="col-md-2 align-content-center border-end border-bottom p-3">
+                            Allocation: {{ order.allocation_id }}
+                        </div>
+
+                        <div class="col-md-2 align-content-center border-end border-bottom p-3">
+                            Shares:{{ order.shares }}
+                        </div>
+
+                        <div class="col-md-2 align-content-center border-end border-bottom p-3">
+                            Type: {{ order.type }}
+                        </div>
+
+                        <div class="col-md-2 align-content-center border-bottom p-3">
+                            Status: <span class="{{ order.status === 'completed' ? 'text-success' : 'text-warning' }}">{{ order.status }}</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end" *ngIf="order.status !== 'completed'">
+                        <div class="col-md-3 align-content-center p-3">
+                            <button class="btn btn-warning" (click)="this.completeOrder(order)">
+                                <i class="bi bi-plus-circle"></i> Complete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="text-center mt-5" *ngIf="portfolio?.allocations?.length">
+            <h5>Allocations</h5>
+            <div *ngFor="let allocation of portfolio?.allocations" class="row justify-content-center">
+
+                <div class="col-md-8 col-sm-10 card mb-2 text-center">
+                    <div class="row fw-bold">
+                        <div class="col-md-2 align-content-center border-end p-3">
+                            Id: {{ allocation.id }}
+                        </div>
+
+                        <div class="col-md-8 align-content-center border-end p-3">
+                            Shares:{{ allocation.shares }}
+                        </div>
+
+                        <div class="col-md-2 align-content-center p-3">
+                            <button class="btn btn-success" (click)="this.createOrder(allocation, 'sell')">
+                                <i class="bi bi-plus-circle"></i> Sell
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
