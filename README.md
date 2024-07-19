@@ -3,6 +3,9 @@
 ## Notes about the projects
 I have created a README file for both the Angular app and the Laravel API. Please read them before reviewing the code, as they explain important details about how the projects work and reflect the ideas I followed during the development of this test.
 
+## Important
+I have focused most of my efforts on the API because I believe it is where I can demonstrate my knowledge more deeply.
+
 ## Instructions
 
   - Feel free to use the framework, persistence system and third party library you like.
