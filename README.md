@@ -1,10 +1,10 @@
 # Finizens' FullStack Challenge - Diego García Ruano
 
+# Important
+I have focused most of my efforts on the API because I believe it is where I can demonstrate my knowledge more deeply. However, I also possess strong knowledge of HTML, CSS, JavaScript and Angular. I am confident in my ability to bring an advanced and professional app to life from a given design.
+
 ## Notes about the projects
 I have created a README file for both the Angular app and the Laravel API. Please read them before reviewing the code, as they explain important details about how the projects work and reflect the ideas I followed during the development of this test.
-
-## Important
-I have focused most of my efforts on the API because I believe it is where I can demonstrate my knowledge more deeply.
 
 ## Instructions
 
